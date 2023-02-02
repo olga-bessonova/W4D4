@@ -32,3 +32,18 @@ class Array
     res
   end
 end
+
+def stock_picker(arr)
+  res = []
+  days = []
+  (0...arr.length - 1).each do |i|
+    (i + 1...arr.length).each do |j|
+      res << arr[j] - arr[i]
+      days << [i, j]
+    end
+  end
+  index_of_max = res.each_with_index.max[1]
+  days[index_of_max]
+end
+
+p stock_picker([200, 250, 100])
