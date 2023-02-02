@@ -12,12 +12,23 @@ end
 class Array
   def two_sum
     res = []
-    (0..self.length-2).each do |i|
-      (i+1..self.length-1).each do |j|
-        res << [i,j] if self[i]+self[j] == 0
+    (0..self.length - 2).each do |i|
+      (i + 1..self.length - 1).each do |j|
+        res << [i, j] if self[i] + self[j] == 0
       end
     end
     return res
-    #res.empty? ? [1] : res 
+    #res.empty? ? [1] : res
+  end
+
+  def my_transpose
+    raise NotImplementedError if self.length != self[0].length
+    res = Array.new(self.length) { Array.new(self.length) }
+    (0..self.length - 1).each do |r|
+      (0...self.length).each do |c|
+        res[c][r] = self[r][c]
+      end
+    end
+    res
   end
 end
