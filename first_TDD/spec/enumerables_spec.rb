@@ -23,10 +23,15 @@ describe "#my_uniq" do
 
   it "not modify original array" do
     array = [1, 2, 3, 3, 2]
-    array2 = array.dup
-    my_uniq(array)
-    expect(array).to eq(array2)
+    expect{my_uniq(array)}.to_not change{array}
   end
+
+  # it "not modify original array" do
+  #   array = [1, 2, 3, 3, 2]
+  #   array2 = array.dup
+  #   my_uniq(array)
+  #   expect(array).to eq(array2)
+  # end
 end
 
 describe "#two_sum" do
@@ -75,3 +80,20 @@ describe "#my_transpose" do
     expect { rows1.my_transpose }.to raise_error(NotImplementedError)
   end
 end
+
+describe "#stock_picker" do
+  it "picks the right pair of days" do
+    arr = [200,250,100]
+    expect(stock_picker(arr)).to eq([0,1])
+  end
+
+  it "doesn't raise an error" do
+    str = 'apple'
+    expect{stock_picker(str)}.to raise_error("Not an Array")
+  end
+
+  it "does not buy stocks in a crash" do
+    expect(stock_picker([5, 4, 3, 2, 1])).to be_nil
+  end
+end
+
